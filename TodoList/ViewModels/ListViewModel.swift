@@ -12,19 +12,33 @@ import SwiftUI
 // CRUD OPERATION
 
 class ListViewModel: ObservableObject {
-    @Published var items: [ItemModel] = []
+    @Published var items: [ItemModel] = [] {
+        didSet{
+            saveItems()
+        }
+    }
+    
+    let itemkey: String = "items_list"
     
     init() {
         getItems()
     }
     
     func getItems(){
-        let newItems = [
-            ItemModel(title: "This is the first title!", isCompleted: false),
-            ItemModel(title: "This is the second!", isCompleted: true),
-            ItemModel(title: "Third", isCompleted: false)
-        ]
-        items.append(contentsOf: newItems)
+//        let newItems = [
+//            ItemModel(title: "This is the first title!", isCompleted: false),
+//            ItemModel(title: "This is the second!", isCompleted: true),
+//            ItemModel(title: "Third", isCompleted: false)
+//        ]
+//        items.append(contentsOf: newItems)
+        
+        guard let data = UserDefaults.standard.data(forKey: itemkey),
+              let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+        else {
+            return
+        }
+        
+        self.items = savedItems
     }
     
     func deleteItem(indexSet: IndexSet){
@@ -51,6 +65,12 @@ class ListViewModel: ObservableObject {
         // Same as below written code in single line
         if let index = items.firstIndex(where: {$0.id == item.id}){
             items[index] = item.updateCompletion()
+        }
+    }
+    
+    func saveItems(){
+        if let encodedData  = try? JSONEncoder().encode(items){
+            UserDefaults.standard.set(encodedData, forKey: itemkey)
         }
     }
 }
