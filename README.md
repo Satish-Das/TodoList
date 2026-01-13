@@ -8,12 +8,30 @@ TodoList is a native iOS application that helps users manage their daily tasks e
 
 ## Features
 
-- ✅ View all todo items in a clean list interface
-- ➕ Add new todo items
-- ✏️ Edit existing todos
-- 🔴🟢 Visual completion status with color-coded indicators
-- 📱 Native iOS design using SwiftUI
-- 🏗️ MVVM Architecture for clean code separation
+### Core Functionality
+- ✅ **View Todo Items**: Display all todo items in a clean, organized list interface
+- ➕ **Add New Items**: Create new todo items with input validation to ensure appropriate content
+- ✏️ **Edit Mode**: Reorder and delete items with built-in SwiftUI EditButton
+- ✓ **Toggle Completion**: Tap any item to mark as complete/incomplete with smooth animations
+- 🗑️ **Delete Items**: Swipe to delete functionality for removing unwanted tasks
+- 🔄 **Reorder Items**: Drag and drop to reorganize your todo list
+- 💾 **Data Persistence**: Automatic saving using UserDefaults with JSON encoding/decoding
+
+### User Interface
+- 🔴🟢 **Visual Status Indicators**: Color-coded checkmarks (green for completed, red for incomplete)
+- 🎨 **Empty State View**: Engaging animated screen when no items exist, prompting users to add tasks
+- 📱 **Native iOS Design**: Built entirely with SwiftUI following iOS design guidelines
+- ✨ **Smooth Animations**: Transition effects and animations for better user experience
+- 🌓 **Custom Color Scheme**: Accent color and secondary accent color support
+- 📏 **Responsive Layout**: Adapts to different screen sizes with ScrollView containers
+
+### Technical Features
+- 🏗️ **MVVM Architecture**: Clean separation of concerns with Model-View-ViewModel pattern
+- 🔐 **Type Safety**: Full implementation using Swift's type-safe language features
+- 🧩 **Modular Components**: Reusable view components (ListView, AddView, ListRowView, NoItemsView)
+- 📦 **Codable Protocol**: Easy serialization for data persistence
+- 🔄 **Reactive Updates**: Uses @Published and ObservableObject for automatic UI updates
+- 🎯 **UUID-based Identification**: Unique identifiers for each todo item
 
 ## Architecture
 
